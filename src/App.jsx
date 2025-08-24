@@ -14,11 +14,11 @@ function App() {
   return (
     <>
       {/* 父子元素 */}
-      {/* <Item></Item> */}
+      <Item></Item>
       {/* 生命週期useEffect */}
       {/* <UseEffectEample></UseEffectEample> */}
        {/* useEffect搭配fetch練習  */}
-       <UseEffectFetch></UseEffectFetch>
+       {/* <UseEffectFetch></UseEffectFetch> */}
     </>
   )
 }
