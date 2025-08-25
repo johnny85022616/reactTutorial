@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Child from './child';
 import styled from 'styled-components';
 
-function item() {
+function Item() {
   const [count , setCount] = useState(0)
   
   function plus(){
@@ -10,7 +10,7 @@ function item() {
     console.log(count);
   }
 
-  const button = styled.button.attrs({className:'plusBtn'})`
+  const Button = styled.button.attrs({className:'plusBtn'})`
     background-color: red;
     color: white;
   `
@@ -19,9 +19,9 @@ function item() {
     <>
     <div>父元件count:{count}</div>
     <Child count={count}></Child>
-    <button onClick={plus}>+1</button>
+    <Button onClick={plus}>+1</Button>
     </>
   )
 }
 
-export default item
+export default Item
