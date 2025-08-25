@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 
@@ -35,6 +35,8 @@ const ExtendPromaryBtn = styled(Button)`
 
 function StyledComponentExample() {
 
+  const [buttonType] = useState('secondary') 
+
   return (
     <>
     <div>StyledComponentExample</div>
@@ -42,6 +44,8 @@ function StyledComponentExample() {
       <Button $primary>primary</Button>
       <Button $secondary>secondary</Button>
       <Button $third>third</Button>
+      {/* 動態決定要傳入的props */}
+      <Button {...{$primary: buttonType === 'primary', $secondary: buttonType === 'secondary'}}>controlBtn</Button>
       <ExtendPromaryBtn $primary>繼承button</ExtendPromaryBtn>
     </div>
     </>
