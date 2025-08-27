@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 function useRefExample() {
-
-  const [count, setCount] = useState(0)
-  const [countPlusOne , setCountPlusOne] = useState(0)
-  
-  function plus(){
-    setCount(count => count + 1)
-  }
+  const inputRef = useRef(null)
+  const intervalRef = useRef(null)
+  const [count,setCount] = useState(0)
 
   useEffect(()=>{
-    setCountPlusOne(count + 1)
-  },[count])
+    inputRef.current.focus() //用途1 取得dom
+    
+    intervalRef.current = setInterval(()=>{  //不會依據state改變重新render
+      setCount((count) => count + 1)
+      },1000) //用途2 記錄資料
+      return ()=>{
+        clearInterval(intervalRef.current)
+      }
+  },[])
   
   return (
     <>
       <div>useRefExample</div>
+      <input type="text" ref={inputRef} />
       <p>count: {count}</p>
-      <p>countPlusOne: {countPlusOne}</p>
-      <button onClick={plus}>+1</button>
+      <button onClick={()=>clearInterval(intervalRef.current)}>停止</button>
     </>
   )
 }
