@@ -7,8 +7,8 @@ function useRefExample() {
 
   useEffect(()=>{
     inputRef.current.focus() //用途1 取得dom
-    
-    intervalRef.current = setInterval(()=>{  //不會依據state改變重新render
+
+    intervalRef.current = setInterval(()=>{  //用途2 不會依據state改變重新render
       setCount((count) => count + 1)
       },1000) //用途2 記錄資料
       return ()=>{
