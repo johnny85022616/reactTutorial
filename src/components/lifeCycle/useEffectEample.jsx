@@ -18,9 +18,9 @@ function useEffectEample() {
   // })
 
   //陣列中有監聽變數，變數改變才會執行callback(wach)
-  // useEffect(()=>{
-  //   console.log('useEffect callback中的count:'+count);
-  // },[count])
+  useEffect(()=>{
+    console.log('useEffect callback中的count:'+count);
+  },[count])
 
   //組件卸載時觸發(componentWillUnMount)
   // useEffect(()=>{

@@ -2,12 +2,7 @@ import React, { useState } from 'react'
 import Child from './child';
 import styled from 'styled-components';
 
-const Button = styled.button.attrs({className:'plusBtn'})`
-  background-color: red;
-  color: white;
-`
-
-function item() {
+function Item() {
   const [count , setCount] = useState(0)
   
   function plus(){
@@ -15,6 +10,10 @@ function item() {
     console.log(count);
   }
 
+  const Button = styled.button.attrs({className:'plusBtn'})`
+    background-color: red;
+    color: white;
+  `
 
    return (
     <>
@@ -25,4 +24,4 @@ function item() {
   )
 }
 
-export default item
+export default Item
