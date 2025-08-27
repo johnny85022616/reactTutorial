@@ -10,7 +10,6 @@ const Button = styled.button`
 function UseMemoExample() {
   
   const [num , setNum] = useState(0);
-
   //相當於vue computed屬性
   const isEven = useMemo(()=>{
     console.log(num % 2 === 0);
@@ -25,7 +24,7 @@ function UseMemoExample() {
     <>
     <div>useMemoExample</div>
     <p>num : {num}</p>
-    <p>isEven: {isEven}</p>
+    <p>isEven: {isEven ? 'even': 'odd'}</p>
     <Button onClick={plus}>+1</Button>
     </>
     
