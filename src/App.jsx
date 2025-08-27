@@ -4,6 +4,7 @@ import UseEffectEample from './components/lifeCycle/useEffectEample';
 import UseEffectFetch from './components/lifeCycle/useEffectFetch';
 import StyledComponentExample from './components/component/StyledComponentExample';
 import UseMemoExample from './components/component/useMemoExample';
+import UseRefExample from './components/component/useRefExample';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       {/* styled component 使用教學  */}
       {/* <StyledComponentExample></StyledComponentExample> */}
       {/* useMemo屬性說明 */}
-      <UseMemoExample></UseMemoExample>
+      {/* <UseMemoExample></UseMemoExample> */}
+      <UseRefExample></UseRefExample>
     </>
   )
 }
