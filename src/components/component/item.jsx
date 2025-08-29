@@ -6,8 +6,12 @@ function Item() {
   const [count , setCount] = useState(0)
   
   function plus(){
-    setCount((count) => count + 1)
-    console.log(count);
+    setCount((count) => {
+      count += 1
+      console.log("new value in setCount callback : ", count ); //在setXXX callback中可直接取的新的值
+      return count
+    })
+    console.log("not in callback : ", count ); // 若不是在setXXX callback中只能取得舊的值
   }
 
   const Button = styled.button.attrs({className:'plusBtn'})`

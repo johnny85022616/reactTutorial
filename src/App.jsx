@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       {/* 父子元素 */}
-      {/* <Item></Item> */}
+      <Item></Item>
       {/* 生命週期useEffect */}
       {/* <UseEffectEample></UseEffectEample> */}
       {/* useEffect搭配fetch練習  */}
@@ -19,7 +19,7 @@ function App() {
       {/* <StyledComponentExample></StyledComponentExample> */}
       {/* useMemo屬性說明 */}
       {/* <UseMemoExample></UseMemoExample> */}
-      <UseRefExample></UseRefExample>
+      {/* <UseRefExample></UseRefExample> */}
     </>
   )
 }
