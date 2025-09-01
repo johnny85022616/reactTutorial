@@ -5,12 +5,13 @@ import UseEffectFetch from './components/lifeCycle/useEffectFetch';
 import StyledComponentExample from './components/component/StyledComponentExample';
 import UseMemoExample from './components/component/useMemoExample';
 import UseRefExample from './components/component/useRefExample';
+import ReduxExample from './components/redux/reduxExample';
 
 function App() {
   return (
     <>
       {/* 父子元素 */}
-      <Item></Item>
+      {/* <Item></Item> */}
       {/* 生命週期useEffect */}
       {/* <UseEffectEample></UseEffectEample> */}
       {/* useEffect搭配fetch練習  */}
@@ -19,7 +20,11 @@ function App() {
       {/* <StyledComponentExample></StyledComponentExample> */}
       {/* useMemo屬性說明 */}
       {/* <UseMemoExample></UseMemoExample> */}
+      {/* useRef屬性說明 */}
       {/* <UseRefExample></UseRefExample> */}
+      {/* reudx 相關 */}
+      <ReduxExample></ReduxExample>
+
     </>
   )
 }
