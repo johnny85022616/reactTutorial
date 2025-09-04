@@ -6,6 +6,7 @@ import StyledComponentExample from './components/component/StyledComponentExampl
 import UseMemoExample from './components/component/useMemoExample';
 import UseRefExample from './components/component/useRefExample';
 import ReduxExample from './components/redux/reduxExample';
+import UseReducerExample from './components/component/useReducerExample';
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
       {/* useRef屬性說明 */}
       {/* <UseRefExample></UseRefExample> */}
       {/* reudx 相關 */}
-      <ReduxExample></ReduxExample>
-
+      {/* <ReduxExample></ReduxExample> */}
+      {/* useReducer 相關 */}
+      <UseReducerExample></UseReducerExample>
     </>
   )
 }
