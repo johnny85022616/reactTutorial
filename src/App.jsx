@@ -7,6 +7,7 @@ import UseMemoExample from './components/component/useMemoExample';
 import UseRefExample from './components/component/useRefExample';
 import ReduxExample from './components/redux/reduxExample';
 import UseReducerExample from './components/component/useReducerExample';
+import UseContextMixUseReducer from './components/component/useContextMixUseReducer/parent';
 
 function App() {
   return (
@@ -26,7 +27,10 @@ function App() {
       {/* reudx 相關 */}
       {/* <ReduxExample></ReduxExample> */}
       {/* useReducer 相關 */}
-      <UseReducerExample></UseReducerExample>
+      {/* <UseReducerExample></UseReducerExample> */}
+      {/* useContext搭配useReducer實現Redux全域狀態管理 */}
+      <UseContextMixUseReducer></UseContextMixUseReducer>
+
     </>
   )
 }

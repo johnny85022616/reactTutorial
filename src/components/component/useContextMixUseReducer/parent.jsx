@@ -1,7 +1,7 @@
-import React, {useReducer } from 'react'
-import { Provider } from 'react-redux';
+import React, { useReducer } from 'react'
 import {CountContext} from './counterContext';
-
+import Counter from './counter';
+import Show from './show';
 
 const initialState = 0;
 
@@ -14,14 +14,14 @@ const reducer = function(state, action){
   }
 }
 
-
 function Parent() {
-  const [counter, dispatch] = useReducer(reducer , initialState)
+  const [count, counterDispatch] = useReducer(reducer , initialState)
   return (
     <>
       <div>Parent</div>
-      <CountContext.Provider value={{counter , dispatch}}>
-        
+      <CountContext.Provider value={{count , counterDispatch}}>
+        <Counter></Counter>
+        <Show></Show>
       </CountContext.Provider>
     </>
   )

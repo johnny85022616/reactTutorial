@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CountContext } from './counterContext'
 
-function show() {
+function Show() {
+  const {count} = useContext(CountContext)
   return (
-    <div>show</div>
+    <>
+      <div>Show</div>
+      <p>目前數字: {count}</p>
+    </>
   )
 }
 
-export default show
+export default Show
