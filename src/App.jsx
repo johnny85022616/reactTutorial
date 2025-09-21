@@ -19,7 +19,7 @@ function App() {
       {/* useEffect搭配fetch練習  */}
       {/* <UseEffectFetch></UseEffectFetch> */}
       {/* styled component 使用教學  */}
-      {/* <StyledComponentExample></StyledComponentExample> */}
+      <StyledComponentExample></StyledComponentExample>
       {/* useMemo屬性說明 */}
       {/* <UseMemoExample></UseMemoExample> */}
       {/* useRef屬性說明 */}
@@ -29,7 +29,7 @@ function App() {
       {/* useReducer 相關 */}
       {/* <UseReducerExample></UseReducerExample> */}
       {/* useContext搭配useReducer實現Redux全域狀態管理 */}
-      <UseContextMixUseReducer></UseContextMixUseReducer>
+      {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
 
     </>
   )
