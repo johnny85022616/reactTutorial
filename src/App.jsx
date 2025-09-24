@@ -8,6 +8,7 @@ import UseRefExample from './components/component/useRefExample';
 import ReduxExample from './components/redux/reduxExample';
 import UseReducerExample from './components/component/useReducerExample';
 import UseContextMixUseReducer from './components/component/useContextMixUseReducer/parent';
+import Line from './components/component/line';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       {/* styled component 使用教學  */}
       {/* <StyledComponentExample></StyledComponentExample> */}
       {/* useMemo屬性說明 */}
-      <UseMemoExample></UseMemoExample>
+      {/* <UseMemoExample></UseMemoExample> */}
       {/* useRef屬性說明 */}
       {/* <UseRefExample></UseRefExample> */}
       {/* reudx 相關 */}
@@ -30,6 +31,7 @@ function App() {
       {/* <UseReducerExample></UseReducerExample> */}
       {/* useContext搭配useReducer實現Redux全域狀態管理 */}
       {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
+      <Line></Line>
 
     </>
   )
