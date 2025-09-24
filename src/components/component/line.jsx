@@ -7,6 +7,7 @@ const MessageList = styled.div.attrs({className: 'MessageList'})`
   background: #222;
   border-radius: 8px;
   overflow: hidden;
+  overflow-x: hidden; /* ✅ 防止橫向破版 */
 `
 
 const MessageRow = styled.div.attrs({className: 'MessageRow'})`
@@ -19,12 +20,12 @@ const MessageRow = styled.div.attrs({className: 'MessageRow'})`
   border-bottom: 1px solid #333;
   user-select: none;
   touch-action: pan-y;
-  transition: ${({ isTouching }) => (isTouching ? 'none' : 'transform 0.2s')};
-  transform: ${({ offsetX }) => `translateX(${offsetX}px)`};
+  transition: ${({ $isTouching }) => ($isTouching ? 'none' : 'transform 0.2s')};
+  transform: ${({ $offsetX }) => `translateX(${$offsetX}px)`};
 `
 
 const MessageText = styled.div.attrs({className: 'MessageText'})`
-  flex: 1;
+  width: 70%;
   color: #fff;
   padding-left: 16px;
   background: #222;
@@ -59,36 +60,41 @@ const DeleteBtn = styled.button.attrs({className:'DeleteBtn'})`
 `
 
 const messagesData = [
-  { id: 1, text: 'Hello, 早安！' },
+  { id: 1, text: 'Hello, 早安你好abcdefghijklmnopqrstuvwxyzabcdefg！' },
   { id: 2, text: '今天要去哪裡？' },
   { id: 3, text: '晚上吃什麼？' },
 ]
 
 function Line() {
-  const [messages, setMessages] = useState(messagesData)
-  const [offsetMap, setOffsetMap] = useState({})
-  const [touchingId, setTouchingId] = useState(null)
-  const startXRef = useRef({})
-  const startOffsetRef = useRef(0)
+  const [messages, setMessages] = useState(messagesData)// 訊息列表
+  const [offsetMap, setOffsetMap] = useState({}) // 儲存每個訊息的偏移量
+  const [touchingId, setTouchingId] = useState(null) // 目前正在觸控的訊息ID
+  const startXRef = useRef({}) // 儲存每個訊息剛開始觸控的X座標
+  const startOffsetRef = useRef(0) // 儲存剛開始觸控的偏移量
 
+
+  // 手指觸控開始
   function handleTouchStart(e, id) {
-    startXRef.current[id] = e.touches[0].clientX
-    startOffsetRef.current = offsetMap[id] || 0
+    console.log("handleTouchStart" , e)
+    startXRef.current[id] = e.touches[0].clientX //取得手指觸控的X座標
+    startOffsetRef.current = offsetMap[id] || 0 //取得目前的偏移量
     setTouchingId(id)
   }
-
+  // 手指觸控移動
   function handleTouchMove(e, id) {
+    console.log("handleTouchMove")
     if (touchingId !== id) return
-    const startX = startXRef.current[id]
-    const currentX = e.touches[0].clientX
-    const startOffset = startOffsetRef.current || 0
-    let diff = currentX - startX + startOffset
+    const startX = startXRef.current[id] //取得剛開始觸控的X座標(在放開觸控前都不會變)
+    const currentX = e.touches[0].clientX //取得目前手指觸控的X座標
+    const startOffset = startOffsetRef.current || 0 //取得剛開始的偏移量
+    let diff = currentX - startX + startOffset //計算偏移量
     if (diff < -120) diff = -120
     if (diff > 0) diff = 0
     setOffsetMap(prev => ({ ...prev, [id]: diff }))
   }
 
   function handleTouchEnd(e, id) {
+    console.log("handleTouchEnd")
     const offsetX = offsetMap[id] || 0
     if (offsetX <= -60) {
       setOffsetMap(prev => ({ ...prev, [id]: -120 }))
@@ -116,8 +122,8 @@ function Line() {
       {messages.map(msg => (
         <div key={msg.id} style={{ position: 'relative', overflow: 'hidden' }}>
           <MessageRow
-            offsetX={offsetMap[msg.id] || 0}
-            isTouching={touchingId === msg.id}
+            $offsetX={offsetMap[msg.id] || 0}
+            $isTouching={touchingId === msg.id}
             onTouchStart={e => handleTouchStart(e, msg.id)}
             onTouchMove={e => handleTouchMove(e, msg.id)}
             onTouchEnd={e => handleTouchEnd(e, msg.id)}
