@@ -71,35 +71,38 @@ function Line() {
   const [touchingId, setTouchingId] = useState(null) // 目前正在觸控的訊息ID
   const startXRef = useRef({}) // 儲存每個訊息剛開始觸控的X座標
   const startOffsetRef = useRef(0) // 儲存剛開始觸控的偏移量
-
+  // const preTouchingId  = useRef(null)
+  console.log("init");
 
   // 手指觸控開始
   function handleTouchStart(e, id) {
     console.log("handleTouchStart" , e)
     startXRef.current[id] = e.touches[0].clientX //取得手指觸控的X座標
-    startOffsetRef.current = offsetMap[id] || 0 //取得目前的偏移量
+    startOffsetRef.current = offsetMap[id] || 0 //取得目前的偏移量(基本上只會是0或-120)
     setTouchingId(id)
   }
   // 手指觸控移動
   function handleTouchMove(e, id) {
     console.log("handleTouchMove")
     if (touchingId !== id) return
-    const startX = startXRef.current[id] //取得剛開始觸控的X座標(在放開觸控前都不會變)
+    const startX = startXRef.current[id] //取得剛開始觸控的X座標(基本上移動的時候都不會變)
     const currentX = e.touches[0].clientX //取得目前手指觸控的X座標
-    const startOffset = startOffsetRef.current || 0 //取得剛開始的偏移量
+    const startOffset = startOffsetRef.current || 0 //取得剛開始的偏移量(基本上只會是0或-120，往左拉是0往右拉是-120)
+    console.log(currentX , startX , currentX - startX);
     let diff = currentX - startX + startOffset //計算偏移量
-    if (diff < -120) diff = -120
-    if (diff > 0) diff = 0
+    if (diff < -120) diff = -120 //避免往左拉太多
+    if (diff > 0) diff = 0 //避免往右拉
+    
     setOffsetMap(prev => ({ ...prev, [id]: diff }))
   }
-
+  //手指觸控移動結束
   function handleTouchEnd(e, id) {
     console.log("handleTouchEnd")
     const offsetX = offsetMap[id] || 0
     if (offsetX <= -60) {
-      setOffsetMap(prev => ({ ...prev, [id]: -120 }))
+      setOffsetMap(prev => ({ ...prev, [id]: -120 })) //顯示全部按鈕
     } else {
-      setOffsetMap(prev => ({ ...prev, [id]: 0 }))
+      setOffsetMap(prev => ({ ...prev, [id]: 0 })) //回到原位
     }
     setTouchingId(null)
   }
@@ -116,6 +119,15 @@ function Line() {
       return newMap
     })
   }
+
+  // useEffect(()=>{
+  //   console.log(77777777,preTouchingId.current ,  touchingId);
+  //   if(preTouchingId.current === touchingId) return 
+  //   Object.entries(offsetMap).forEach(([key])=>{
+  //     offsetMap[key] = 0
+  //   })
+  //   preTouchingId.current = touchingId
+  // },[touchingId])
 
   return (
     <MessageList>
