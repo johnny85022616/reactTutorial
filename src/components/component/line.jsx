@@ -10,7 +10,12 @@ const MessageList = styled.div.attrs({ className: 'MessageList' })`
   overflow-x: hidden; /* ✅ 防止橫向破版 */
 `;
 
-const MessageRow = styled.div.attrs({ className: 'MessageRow' })`
+const MessageRow = styled.div.attrs(({ $isTouching, $offsetX }) => ({
+  style: {
+    transition: $isTouching ? 'none' : 'transform 0.2s',
+    transform: `translateX(${$offsetX}px)`,
+  },
+}))`
   position: relative;
   width: calc(100% + 120px); /* 120px = 按鈕區寬度 */
   height: 48px;
@@ -20,8 +25,8 @@ const MessageRow = styled.div.attrs({ className: 'MessageRow' })`
   border-bottom: 1px solid #333;
   user-select: none;
   touch-action: pan-y;
-  transition: ${({ $isTouching }) => ($isTouching ? 'none' : 'transform 0.2s')};
-  transform: ${({ $offsetX }) => `translateX(${$offsetX}px)`};
+  /* transition: ${({ $isTouching }) => ($isTouching ? 'none' : 'transform 0.2s')};
+  transform: ${({ $offsetX }) => `translateX(${$offsetX}px)`}; */
 `;
 
 const MessageText = styled.div.attrs({ className: 'MessageText' })`
@@ -77,7 +82,7 @@ function Line() {
   // 手指觸控開始
   function handleTouchStart(e, id) {
     console.log('handleTouchStart', e);
-    resetOffset(id)
+    resetOffset(id);
     startXRef.current[id] = e.touches[0].clientX; //取得手指觸控的X座標
     startOffsetRef.current = offsetMap[id] || 0; //取得目前的偏移量(基本上只會是0或-120)
     setTouchingId(id);
@@ -105,7 +110,7 @@ function Line() {
     } else {
       setOffsetMap((prev) => ({ ...prev, [id]: 0 })); //回到原位
     }
-    preTouchingId.current = id
+    preTouchingId.current = id;
     setTouchingId(null);
   }
 
@@ -123,8 +128,8 @@ function Line() {
   }
 
   //將不是目前滑動的聊天列都歸回原位
-  function resetOffset(touchingId){
-      Object.entries(offsetMap).forEach(([key]) => {
+  function resetOffset(touchingId) {
+    Object.entries(offsetMap).forEach(([key]) => {
       if (preTouchingId.current === touchingId) return; //若這次滑動的和上次滑動的是同一個就從目前的地方開始不回歸原位
       setOffsetMap((prev) => ({ ...prev, [key]: 0 }));
     });
@@ -135,6 +140,7 @@ function Line() {
       {messages.map((msg) => (
         <div key={msg.id} style={{ position: 'relative', overflow: 'hidden' }}>
           <MessageRow
+            className='MessageRow'
             $offsetX={offsetMap[msg.id] || 0}
             $isTouching={touchingId === msg.id}
             onTouchStart={(e) => handleTouchStart(e, msg.id)}
