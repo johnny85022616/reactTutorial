@@ -9,6 +9,7 @@ import ReduxExample from './components/redux/reduxExample';
 import UseReducerExample from './components/component/useReducerExample';
 import UseContextMixUseReducer from './components/component/useContextMixUseReducer/parent';
 import Line from './components/component/line';
+import UseCallbackExample from './components//component/useCallback/parent';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
       {/* <UseReducerExample></UseReducerExample> */}
       {/* useContext搭配useReducer實現Redux全域狀態管理 */}
       {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
-      <Line></Line>
+      <UseCallbackExample></UseCallbackExample>
+      {/* <Line></Line> */}
 
     </>
   )
