@@ -7,13 +7,13 @@ function Parent() {
   const childRef = useRef(null)
 
   function getChildInputVal(){
-    console.log(childRef.current.inputVal);
+    console.log(childRef.current.nameVal);
   }
 
   return (
     <>
     <div>Parent</div>
-    <button onClick={getChildInputVal}>取得子元件輸入資料</button>
+    <button onClick={getChildInputVal}>取得子元件姓名</button>
     <Child ref={childRef}></Child>
     </>
   )
