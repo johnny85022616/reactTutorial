@@ -11,6 +11,7 @@ import UseContextMixUseReducer from './components/component/useContextMixUseRedu
 import Line from './components/component/line';
 import UseCallbackExample from './components/component/useCallback/parent';
 import UseLayoutEffectExample from './components/component/useLayoutEffectExample';
+import UseImperativeHandleExample from './components/component/useImperativeHandle/parent';
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
       {/* useContext搭配useReducer實現Redux全域狀態管理 */}
       {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
       {/* <UseCallbackExample></UseCallbackExample> */}
-      <UseLayoutEffectExample></UseLayoutEffectExample>
+      {/* <UseLayoutEffectExample></UseLayoutEffectExample> */}
+      <UseImperativeHandleExample></UseImperativeHandleExample>
       {/* <Line></Line> */}
 
     </>
