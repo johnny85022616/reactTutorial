@@ -9,11 +9,15 @@ function Parent() {
   function getChildInputVal(){
     console.log(childRef.current.nameVal);
   }
+  function getSubmitFormData(){
+    console.log(childRef.current.submit());
+  }
 
   return (
     <>
     <div>Parent</div>
     <button onClick={getChildInputVal}>取得子元件姓名</button>
+    <button onClick={getSubmitFormData}>取得表單資料</button>
     <Child ref={childRef}></Child>
     </>
   )
