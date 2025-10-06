@@ -12,6 +12,7 @@ import Line from './components/component/line';
 import UseCallbackExample from './components/component/useCallback/parent';
 import UseLayoutEffectExample from './components/component/useLayoutEffectExample';
 import UseImperativeHandleExample from './components/component/useImperativeHandle/parent';
+import UseContextExample from './components/component/useContext/parent'
 
 function App() {
   return (
@@ -36,7 +37,9 @@ function App() {
       {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
       {/* <UseCallbackExample></UseCallbackExample> */}
       {/* <UseLayoutEffectExample></UseLayoutEffectExample> */}
-      <UseImperativeHandleExample></UseImperativeHandleExample>
+      {/* useContext範例 */}
+      <UseContextExample></UseContextExample>
+      {/* <UseImperativeHandleExample></UseImperativeHandleExample> */}
       {/* <Line></Line> */}
 
     </>
