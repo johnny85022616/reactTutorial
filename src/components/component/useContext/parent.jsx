@@ -4,6 +4,13 @@ import styled from "styled-components";
 
 export const ThemeContext = createContext(null);
 
+const Button = styled.button`
+  background-color: ${({type, theme})=>{
+    console.log(theme , type);
+    return theme === type? 'red':'unset'
+  }};
+`
+
 function Parent() {
   const [theme, setTheme] = useState("light");
 
@@ -20,8 +27,8 @@ function Parent() {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <h1>Parent</h1>
         <p>目前主題 : {theme}</p>
-        <button onClick={lightBtnClick}>light</button>
-        <button onClick={darkBtnClick}>dark</button>
+        <Button type={'light'} theme={theme} onClick={lightBtnClick}>light</Button>
+        <Button type={'dark'} theme={theme} onClick={darkBtnClick}>dark</Button>
         <Child></Child>
       </ThemeContext.Provider>
     </>

@@ -17,6 +17,7 @@ const {theme} = context
 console.log(theme)
   return (
     <>
+      <h2>Child</h2>
       <ShowArea $theme={theme}></ShowArea>
     </>
   )
