@@ -37,13 +37,13 @@ function App() {
       {/* useContext搭配useReducer實現Redux全域狀態管理 */}
       {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
       {/* useCallback使用方法 */}
-      {/* <UseCallbackExample></UseCallbackExample> */}
+      <UseCallbackExample></UseCallbackExample>
       {/* useLayoutEffect組件避免閃爍 */}
       {/* <UseLayoutEffectExample></UseLayoutEffectExample> */}
       {/* useContext範例(同vue provide/inject) */}
       {/* <UseContextExample></UseContextExample> */}
       {/* 將useContext包裝成hooks */}
-      <UseContextExtra></UseContextExtra>
+      {/* <UseContextExtra></UseContextExtra> */}
       {/* useImperativehandle使用方法(子組件將狀態或方法暴露給父元件使用) */}
       {/* <UseImperativeHandleExample></UseImperativeHandleExample> */}
       {/* <Line></Line> */}
