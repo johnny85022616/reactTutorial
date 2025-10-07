@@ -13,6 +13,7 @@ import UseCallbackExample from './components/component/useCallback/parent';
 import UseLayoutEffectExample from './components/component/useLayoutEffectExample';
 import UseImperativeHandleExample from './components/component/useImperativeHandle/parent';
 import UseContextExample from './components/component/useContext/parent'
+import UseContextExtra from './components/component/useContext/exContainer';
 
 function App() {
   return (
@@ -40,7 +41,9 @@ function App() {
       {/* useLayoutEffect組件避免閃爍 */}
       {/* <UseLayoutEffectExample></UseLayoutEffectExample> */}
       {/* useContext範例(同vue provide/inject) */}
-      <UseContextExample></UseContextExample>
+      {/* <UseContextExample></UseContextExample> */}
+      {/* 將useContext包裝成hooks */}
+      <UseContextExtra></UseContextExtra>
       {/* useImperativehandle使用方法(子組件將狀態或方法暴露給父元件使用) */}
       {/* <UseImperativeHandleExample></UseImperativeHandleExample> */}
       {/* <Line></Line> */}
