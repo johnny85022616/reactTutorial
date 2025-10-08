@@ -14,6 +14,7 @@ import UseLayoutEffectExample from './components/component/useLayoutEffectExampl
 import UseImperativeHandleExample from './components/component/useImperativeHandle/parent';
 import UseContextExample from './components/component/useContext/parent'
 import UseContextExtra from './components/component/useContext/exContainer';
+import UseDeferredValue from './components/component/useDeferredValue/search';
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
       {/* useContext搭配useReducer實現Redux全域狀態管理 */}
       {/* <UseContextMixUseReducer></UseContextMixUseReducer> */}
       {/* useCallback使用方法 */}
-      <UseCallbackExample></UseCallbackExample>
+      {/* <UseCallbackExample></UseCallbackExample> */}
       {/* useLayoutEffect組件避免閃爍 */}
       {/* <UseLayoutEffectExample></UseLayoutEffectExample> */}
       {/* useContext範例(同vue provide/inject) */}
@@ -47,6 +48,8 @@ function App() {
       {/* useImperativehandle使用方法(子組件將狀態或方法暴露給父元件使用) */}
       {/* <UseImperativeHandleExample></UseImperativeHandleExample> */}
       {/* <Line></Line> */}
+      {/* useDeferredValue使用方法 */}
+      <UseDeferredValue></UseDeferredValue>
 
     </>
   )
