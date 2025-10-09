@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 
 function SearchResult({ query }) {
@@ -7,6 +7,10 @@ function SearchResult({ query }) {
   const filtered = useMemo(()=>{
     return data.filter(item => item.includes(query));
   },[query])
+
+  useEffect(()=>{
+    console.log(12121313112);
+  })
 
   return (
     <ul>
