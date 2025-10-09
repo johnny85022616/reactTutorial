@@ -15,6 +15,7 @@ import UseImperativeHandleExample from './components/component/useImperativeHand
 import UseContextExample from './components/component/useContext/parent'
 import UseContextExtra from './components/component/useContext/exContainer';
 import UseDeferredValue from './components/component/useDeferredValue/search';
+import ImmerExample from './components/component/immerExample';
 
 function App() {
   return (
@@ -49,7 +50,9 @@ function App() {
       {/* <UseImperativeHandleExample></UseImperativeHandleExample> */}
       {/* <Line></Line> */}
       {/* useDeferredValue使用方法 */}
-      <UseDeferredValue></UseDeferredValue>
+      {/* <UseDeferredValue></UseDeferredValue> */}
+      {/* immer基本使用 */}
+      <ImmerExample></ImmerExample>
 
     </>
   )
