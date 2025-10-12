@@ -15,7 +15,7 @@ const {
   VITE_APP_AI_CMSP_DOMAIN
 } = import.meta.env;
 
-import tools from '../util/tools';
+import tools from '../utils/tools';
 const { getCookie } = tools;
 
 let faToken = null;

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import api from './apis/api'
 import nextArrow from "../../../assets/icons/shopping/next_arrow.png";
+import ConsigneeList from './cp/consignee/consigneeList'
 
 const Head = styled.div`
   width: 100%;
@@ -26,7 +28,36 @@ const AddBtn = styled.span`
   margin-right: 20px;
 `;
 
+const LoadingMap = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0; 
+  right: 0
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  `
+const LoadingText =styled.p`
+  
+`
+
 function ConsigneeManagement() {
+
+  const [consigneeList, setConsigneeList] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(()=>{
+    api.member.getConsignee().then((res)=>{
+      if(res){
+        setIsLoading(true)
+      }
+    })
+  })
+
+
   return (
     <div className="consigneeManagement">
       <Head>
@@ -34,6 +65,7 @@ function ConsigneeManagement() {
         <p>收貨人通訊錄管理</p>
         <AddBtn>新增</AddBtn>
       </Head>
+      {consigneeList && <ConsigneeList data={consigneeList}></ConsigneeList>}
     </div>
   );
 }

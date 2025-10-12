@@ -1,4 +1,8 @@
 import tools from '../utils/tools'
+import config from '../configs/config';
+
+const {  frontApiPath, fetchPostHeaders } = config;
+const frontPath = frontApiPath()
 
 const memberInfo={
   "status": 0,
@@ -70,5 +74,90 @@ export default {
       return true;
     }
     return false;
+  },
+  // 取得收件人
+  async getConsignee(isGetMark = false /** 是否取得隱碼 */) {
+    return await fetch(`${frontPath}receiver/getReceiver?type=${isGetMark}`, {
+      ...fetchPostHeaders,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        const { resultCode, resultData, resultMsg} = res;
+        let data 
+        if([0, 800].includes(resultCode) && resultData){
+          data = resultData.info?.map((ele)=>{
+            return { ...ele, isDefaultBoolean: ele.isDefault === 'Y'? true: false }
+          })
+          return data
+        }
+        uiAlert.getFadeAlert(resultMsg)
+        return  null
+      })
+      .catch(() => {
+        uiAlert.getFadeAlert("取得收貨人發生錯誤")
+        return null;
+      });
+  },
+  //更新收貨人
+  async updateDefaultConsignee(){
+    return await fetch(`${frontPath}receiver/updateDefaultReceiver?dataId=${updateId}`, {
+      ...fetchPostHeaders,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        const { resultCode, resultMsg} = res;
+        if(resultCode === 0 ){
+          uiAlert.getFadeAlert('已變更預設收貨人')
+          return true
+        }
+        uiAlert.getFadeAlert(resultMsg)
+        return  false
+      })
+      .catch(() => {
+        uiAlert.getFadeAlert('變更預設收貨人失敗')
+        return false;
+      });
+  },
+  //刪除收貨人
+  async deleteConsignee(){
+    return await fetch(`${frontPath}receiver/deleteReceiver`, {
+      ...fetchPostHeaders,
+      body: JSON.stringify({dataId: [deleteId]}),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        const { resultCode, resultMsg} = res;
+        if(resultCode === 0 ){
+          uiAlert.getFadeAlert('刪除收貨人成功')
+          return true
+        }
+        uiAlert.getFadeAlert(resultMsg)
+        return  false
+      })
+      .catch(() => {
+        uiAlert.getFadeAlert('刪除收貨人失敗')
+        return false;
+      });
+  },
+  //新增收貨人
+  async createConsignee(postData){
+    return await fetch(`${frontPath}receiver/addReceiver`, {
+      ...fetchPostHeaders,
+      body: JSON.stringify(postData),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        const { resultCode, resultData, resultMsg } = res;
+        if(resultCode === 0 && resultData){
+          uiAlert.getFadeAlert('新增收貨人成功')
+          return true
+        }
+        uiAlert.getFadeAlert(resultMsg)
+        return  false
+      })
+      .catch(() => {
+        uiAlert.getFadeAlert('新增收貨人失敗')
+        return false;
+      });
   },
 }
