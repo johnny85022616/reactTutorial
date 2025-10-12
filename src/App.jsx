@@ -16,8 +16,14 @@ import UseContextExample from './components/component/useContext/parent'
 import UseContextExtra from './components/component/useContext/exContainer';
 import UseDeferredValue from './components/component/useDeferredValue/search';
 import ImmerExample from './components/component/immerExample';
+import ConsigneeManagement from './components/component/shopping/consigneeManagement';
+import api from './components/component/shopping/apis/api'
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(()=>{
+    api.member.login();
+  },[])
   return (
     <>
       {/* 父子元素 */}
@@ -52,8 +58,9 @@ function App() {
       {/* useDeferredValue使用方法 */}
       {/* <UseDeferredValue></UseDeferredValue> */}
       {/* immer基本使用 */}
-      <ImmerExample></ImmerExample>
-
+      {/* <ImmerExample></ImmerExample> */}
+      {/* -------------------------------------------------------------------------------- */}
+      <ConsigneeManagement></ConsigneeManagement>
     </>
   )
 }

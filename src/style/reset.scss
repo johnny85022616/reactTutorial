@@ -1,0 +1,69 @@
+/* reset.scss */
+
+/* 1. 清除所有元素的 margin、padding、box-sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. 移除預設列表樣式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 3. 移除預設連結樣式 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 4. 移除表單元素的預設樣式 */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+}
+
+/* 5. 按鈕 cursor */
+button {
+  cursor: pointer;
+}
+
+/* 6. img 不超出容器 */
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* 7. 設定 html, body 的預設樣式 */
+html,
+body {
+  height: 100%;
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 8. 標題預設取消粗體、大小調整視需求 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: inherit;
+}
