@@ -32,7 +32,7 @@ const LoadingMap = styled.div`
   position: fixed;
   top: 0;
   left: 0; 
-  right: 0
+  right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: 999;
@@ -41,7 +41,13 @@ const LoadingMap = styled.div`
   align-items: center;
   `
 const LoadingText =styled.p`
-  
+  font-size: 1.2rem; 
+  color: white;
+`
+
+const noDataText = styled.div`
+  margin-top: 200px;
+  font-size: 1.8rem;
 `
 
 function ConsigneeManagement() {
@@ -50,12 +56,30 @@ function ConsigneeManagement() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(()=>{
+    getConsignee()
+  },[])
+
+  async function getConsignee(){
+    setIsLoading(true)
     api.member.getConsignee().then((res)=>{
       if(res){
-        setIsLoading(true)
+        setConsigneeList(res)
+        setIsLoading(false)
       }
     })
-  })
+  }
+
+  let content;
+
+  if (isLoading) {
+    content = <LoadingMap><LoadingText>Loading...</LoadingText></LoadingMap>
+  }else{
+    if(consigneeList){
+      content = <ConsigneeList data={consigneeList}></ConsigneeList>
+    }else{
+      content = <noDataText></noDataText>
+    }
+  }
 
 
   return (
@@ -65,7 +89,7 @@ function ConsigneeManagement() {
         <p>收貨人通訊錄管理</p>
         <AddBtn>新增</AddBtn>
       </Head>
-      {consigneeList && <ConsigneeList data={consigneeList}></ConsigneeList>}
+      {content}
     </div>
   );
 }
