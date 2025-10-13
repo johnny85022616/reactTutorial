@@ -22,7 +22,9 @@ const ConsigneeItem = styled.li`
 function ConsigneeList({data}) {
   return <div className="consigneeList">
     <Clist>
-      12345
+      {data.map(v=>{
+        return <ConsigneeItem></ConsigneeItem>
+      })}
     </Clist>
   </div>;
 }
