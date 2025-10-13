@@ -4,6 +4,7 @@ import api from './apis/api'
 import ConsigneeList from './cp/consignee/consigneeList'
 import './style/shopping/consigneeManagement/consigneeManagement.scss'
 
+
 function ConsigneeManagement() {
 
   const [consigneeList, setConsigneeList] = useState(null)
