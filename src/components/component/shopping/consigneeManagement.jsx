@@ -1,46 +1,53 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import api from './apis/api'
-import ConsigneeList from './cp/consignee/consigneeList'
-import './style/shopping/consigneeManagement/consigneeManagement.scss'
-
+import api from "./apis/api";
+import ConsigneeList from "./cp/consignee/consigneeList";
+import "./style/shopping/consigneeManagement/consigneeManagement.scss";
 
 function ConsigneeManagement() {
+  const [consigneeList, setConsigneeList] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDataGeted, setIsDataGeted] = useState(false);
 
-  const [consigneeList, setConsigneeList] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  useEffect(() => {
+    init()
+  }, []);
 
-  useEffect(()=>{
-    getConsignee()
-  },[])
+  async function init(){
+    await getConsignee();
+    setIsDataGeted(true);
+  };
 
-  async function getConsignee(){
-    setIsLoading(true)
-    api.member.getConsignee().then((res)=>{
-      if(res){
-        setConsigneeList(res)
-        setIsLoading(false)
+  async function getConsignee() {
+    setIsLoading(true);
+    api.member.getConsignee().then((res) => {
+      if (res) {
+        setConsigneeList(res);
+        setIsLoading(false);
       }
-    })
+    });
   }
 
   let content;
 
   if (isLoading) {
-    content = <div className="loadingMap"><p className="loadingText">Loading...</p></div>
-  }else{
-    if(consigneeList){
-      content = <ConsigneeList data={consigneeList}></ConsigneeList>
-    }else{
-      content = <p className="noDataText">無收貨人資訊</p>
+    content = (
+      <div className="loadingMap">
+        <p className="loadingText">Loading...</p>
+      </div>
+    );
+  } else {
+    if (consigneeList) {
+      content = <ConsigneeList data={consigneeList}></ConsigneeList>;
+    } else {
+      content = <p className="noDataText">無收貨人資訊</p>;
     }
   }
-
 
   return (
     <div className="consigneeManagement">
       <div className="head">
-        <i className="backIcon"/>
+        <i className="backIcon" />
         <p>收貨人通訊錄管理</p>
         <span className="addBtn">新增</span>
       </div>
