@@ -1,0 +1,63 @@
+.consigneeManagement {
+  .head {
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    .backIcon {
+      width: 44px;
+      height: 44px;
+      background: url('../../../../../../assets/icons/shopping/next_arrow.png') 50% / 20px no-repeat;
+    }
+    .addBtn {
+      font-size: 15px;
+      color: #3f3f3f;
+      font-weight: 500;
+      margin-right: 20px;
+    }
+  }
+  .loadingMap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loadingText {
+    font-size: 1.2rem;
+    color: white;
+  }
+  .noDataText {
+    margin-top: 200px;
+    font-size: 1.8rem;
+  }
+}
+
+.consigneeList {
+  ul {
+    list-style: none;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    list-style-type: none;
+    padding: 10px 0;
+    margin-bottom: 60px;
+    .consigneeItem {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 10px;
+      margin: 10px 10px;
+      border-radius: 8px;
+    }
+  }
+}
