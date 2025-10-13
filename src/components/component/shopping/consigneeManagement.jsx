@@ -37,6 +37,7 @@ function ConsigneeManagement() {
       </div>
     );
   } else {
+    if(!isDataGeted) return null;
     if (consigneeList) {
       content = <ConsigneeList data={consigneeList}></ConsigneeList>;
     } else {
