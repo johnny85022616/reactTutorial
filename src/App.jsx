@@ -18,6 +18,7 @@ import UseDeferredValue from './components/component/useDeferredValue/search';
 import ImmerExample from './components/component/immerExample';
 import ConsigneeManagement from './components/component/shopping/consigneeManagement';
 import api from './components/component/shopping/apis/api'
+import {FadeAlertProvider} from './components/component/shopping/cp/common/fadeAlert';
 import { useEffect } from 'react';
 
 function App() {
@@ -60,7 +61,9 @@ function App() {
       {/* immer基本使用 */}
       {/* <ImmerExample></ImmerExample> */}
       {/* -------------------------------------------------------------------------------- */}
-      <ConsigneeManagement></ConsigneeManagement>
+      <FadeAlertProvider>
+        <ConsigneeManagement></ConsigneeManagement>
+      </FadeAlertProvider>
     </>
   )
 }

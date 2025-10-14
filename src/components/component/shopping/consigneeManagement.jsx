@@ -38,7 +38,7 @@ function ConsigneeManagement() {
   } else {
     if(!isDataGeted) return null;
     if (consigneeList) {
-      content = <ConsigneeList data={consigneeList}></ConsigneeList>;
+      content = <ConsigneeList data={consigneeList} getConsignee={getConsignee}></ConsigneeList>;
     } else {
       content = <p className="noDataText">無收貨人資訊</p>;
     }

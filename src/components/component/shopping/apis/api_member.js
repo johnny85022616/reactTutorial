@@ -108,14 +108,13 @@ export default {
       .then((res) => {
         const { resultCode, resultMsg } = res;
         if (resultCode === 0) {
-          alert('已變更預設收貨人');
           return true;
         }
         alert(resultMsg);
         return false;
       })
       .catch(() => {
-        alert('變更預設收貨人失敗');
+        console.error('變更預設收貨人失敗');
         return false;
       });
   },
@@ -129,14 +128,13 @@ export default {
       .then((res) => {
         const { resultCode, resultMsg } = res;
         if (resultCode === 0) {
-          alert('刪除收貨人成功');
           return true;
         }
         alert(resultMsg);
         return false;
       })
       .catch(() => {
-        alert('刪除收貨人失敗');
+        console.error('刪除收貨人失敗');
         return false;
       });
   },
@@ -150,14 +148,13 @@ export default {
       .then((res) => {
         const { resultCode, resultData, resultMsg } = res;
         if (resultCode === 0 && resultData) {
-          alert('新增收貨人成功');
           return true;
         }
         alert(resultMsg);
         return false;
       })
       .catch(() => {
-        alert('新增收貨人失敗');
+        console.error('新增收貨人失敗');
         return false;
       });
   },
