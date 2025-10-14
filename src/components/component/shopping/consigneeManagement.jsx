@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import api from "./apis/api";
 import ConsigneeList from "./cp/consignee/consigneeList";
+import CreateDialog from './cp/consignee/createDialog'
 import "./style/shopping/consigneeManagement/consigneeManagement.scss";
 
 function ConsigneeManagement() {
   const [consigneeList, setConsigneeList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDataGeted, setIsDataGeted] = useState(false);
-
+  const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);
   useEffect(() => {
     init()
   }, []);
@@ -24,6 +25,11 @@ function ConsigneeManagement() {
         setIsLoading(false);
       }
     });
+  }
+
+  //新增收貨人按鈕
+  function handleCreateBtnClick(){
+    setIsCreatePopupOpen(true);
   }
 
   let content;
@@ -48,9 +54,10 @@ function ConsigneeManagement() {
       <div className="head">
         <i className="backIcon" />
         <p>收貨人通訊錄管理</p>
-        <span className="addBtn">新增</span>
+        <span className="addBtn" onClick={handleCreateBtnClick}>新增</span>
       </div>
       {content}
+      {isCreatePopupOpen && <CreateDialog></CreateDialog>}
     </div>
   );
 }

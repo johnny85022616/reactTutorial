@@ -8,6 +8,7 @@ function fullscreenDialog({ head, children }) {
       <div className='box'>
         <div className='head'>
           <p>{head}</p>
+          <i className='close'></i>
         </div>
       </div>
     </div>
