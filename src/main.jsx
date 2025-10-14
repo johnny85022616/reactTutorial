@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.scss'
-import './style/reset.scss'
 import App from './App.jsx'
 import allReducer from './redux/reducers';
 import { createStore } from 'redux';

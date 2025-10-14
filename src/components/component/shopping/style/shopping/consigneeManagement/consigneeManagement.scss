@@ -1,9 +1,10 @@
+@import '../../color.scss';
 .consigneeManagement {
   .head {
     width: 100%;
     line-height: 50px;
     text-align: center;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid $alto;
     position: relative;
     display: flex;
     align-items: center;
@@ -16,7 +17,7 @@
     }
     .addBtn {
       font-size: 15px;
-      color: #3f3f3f;
+      color: $mine-shaft;
       font-weight: 500;
       margin-right: 20px;
     }
@@ -34,19 +35,19 @@
     align-items: center;
   }
   .loadingText {
-    font-size: 1.2rem;
+    font-size: 12px;
     color: white;
   }
   .noDataText {
     margin-top: 200px;
-    font-size: 1.8rem;
+    font-size: 18px;
   }
 }
 
 .consigneeList {
   ul {
     list-style: none;
-    background-color: #f4f4f4;
+    background-color: $background;
     min-height: 100vh;
     list-style-type: none;
     padding: 10px 0;
@@ -58,6 +59,35 @@
       padding: 15px 10px;
       margin: 10px 10px;
       border-radius: 8px;
+      .left {
+        .top {
+          display: flex;
+          margin-bottom: 5px;
+          font-weight: bold;
+          > span {
+            margin-right: 5px;
+          }
+          .name{
+            margin-right: 5px;
+          }
+          .defaultText{
+            color: red;
+          }
+        }
+        .mobile, .fullAddress{
+          font-size: 14px;
+          font-weight: bold;
+          color: $sliver;
+        }
+      }
+      .right {
+      }
     }
   }
 }
+
+.gray{
+  color : $sliver;
+}
+
+

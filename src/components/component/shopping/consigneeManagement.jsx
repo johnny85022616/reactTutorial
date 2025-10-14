@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import api from "./apis/api";
 import ConsigneeList from "./cp/consignee/consigneeList";
 import "./style/shopping/consigneeManagement/consigneeManagement.scss";
@@ -20,7 +19,7 @@ function ConsigneeManagement() {
 
   async function getConsignee() {
     setIsLoading(true);
-    api.member.getConsignee().then((res) => {
+    api.member.getConsignee(true).then((res) => {
       if (res) {
         setConsigneeList(res);
         setIsLoading(false);
