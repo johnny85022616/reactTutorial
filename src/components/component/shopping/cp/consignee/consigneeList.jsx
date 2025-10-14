@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import api from "../../apis/api";
 import {useFadeAlert} from '../common/fadeAlert';
 
 function ConsigneeList({ data, getConsignee }) {
+
   const {showAlert} = useFadeAlert()
   async function updateDefaultConsignee(id){
     try{
@@ -17,7 +18,7 @@ function ConsigneeList({ data, getConsignee }) {
 
   async function deleteConsignee(id){
     try{
-      const pass = await api.member.updateDefaultConsignee(id);
+      const pass = await api.member.deleteConsignee(id);
       if (!pass) return;
       await getConsignee()
       showAlert("刪除成功")
@@ -52,7 +53,7 @@ function ConsigneeList({ data, getConsignee }) {
                 <p className='fullAddress'>{item.addr?.fullAddress}</p>
               </div>
               <div className='right'>
-                <i className='delete' onClick={handleDeleteBtnClick}></i>
+                <i className='delete' onClick={()=>handleDeleteBtnClick(item.id)}></i>
               </div>
             </li>
           );
@@ -61,5 +62,4 @@ function ConsigneeList({ data, getConsignee }) {
     </div>
   );
 }
-
-export default ConsigneeList;
+export default memo(ConsigneeList);

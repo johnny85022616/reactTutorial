@@ -4,13 +4,17 @@ import styled from 'styled-components';
 
 const AlertContext = createContext();
 
-const FadeAlert = styled.div`
+const FadeAlert = styled.div.attrs({className: 'fadeAlert'})`
   position: fixed;
   top: ${({$isOpen})=> $isOpen? '50px': '-50px'};
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
   transition: top .3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #adadad;
   padding: 12px 24px;
   border-radius: 8px;

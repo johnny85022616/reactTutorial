@@ -16,7 +16,6 @@ function ConsigneeManagement() {
     await getConsignee();
     setIsDataGeted(true);
   };
-
   async function getConsignee() {
     setIsLoading(true);
     api.member.getConsignee(true).then((res) => {
