@@ -1,4 +1,4 @@
-@import '../../color.scss';
+@use '../../color' as *;
 .consigneeManagement {
   .head {
     width: 100%;
