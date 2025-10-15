@@ -32,6 +32,11 @@ function ConsigneeManagement() {
     setIsCreatePopupOpen(true);
   }
 
+  //關閉新增收貨人dialog
+  function closeCreateDialog(){
+    setIsCreatePopupOpen(false)
+  }
+
   let content;
 
   if (isLoading) {
@@ -59,7 +64,7 @@ function ConsigneeManagement() {
         </span>
       </div>
       {content}
-      {isCreatePopupOpen && <CreateDialog></CreateDialog>}
+      {isCreatePopupOpen && <CreateDialog closeCreateDialog={closeCreateDialog}></CreateDialog>}
     </div>
   );
 }
