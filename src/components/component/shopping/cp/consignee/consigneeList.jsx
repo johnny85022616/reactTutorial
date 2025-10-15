@@ -1,26 +1,28 @@
 import React, { memo } from 'react';
-import api from "../../apis/api";
 import {useFadeAlert} from '../common/fadeAlert';
+import { useDispatch } from 'react-redux';
+import {updateConsignee , deleteConsignee} from '../../redux/action/consigneeAction';
 
-function ConsigneeList({ data, getConsignee }) {
+function ConsigneeList({ data }) {
+
+  const dispatch = useDispatch()
 
   const {showAlert} = useFadeAlert()
+
+  //更新預設收貨人
   async function updateDefaultConsignee(id){
     try{
-      const pass = await api.member.updateDefaultConsignee(id);
-      if (!pass) return;
-      getConsignee()
+      dispatch(updateConsignee(id))
       showAlert("修改成功")
     }catch(e){
       console.error("updateDefaultConsignee function error," , e);
     }
   }
 
-  async function deleteConsignee(id){
+  //刪除預設收貨人
+  async function deleteConsigneeFn(id){
     try{
-      const pass = await api.member.deleteConsignee(id);
-      if (!pass) return;
-      await getConsignee()
+      dispatch(deleteConsignee(id))
       showAlert("刪除成功")
     }catch(e){
       console.error("deleteConsignee function error," , e);
@@ -32,7 +34,7 @@ function ConsigneeList({ data, getConsignee }) {
   }
 
   async function handleDeleteBtnClick(id){
-    deleteConsignee(id)
+    deleteConsigneeFn(id)
   }
 
   return (
