@@ -1,11 +1,11 @@
-import api from '../../apis/api';
+import api from "../../apis/api";
 
 const setLoading = (payload) => {
-  return { type: 'SET_CONSIGNEE_LOADING', payload: payload };
+  return { type: "SET_CONSIGNEE_LOADING", payload: payload };
 };
 
 const setConsigneeList = (payload) => {
-  return { type: 'SET_CONSIGNEE_LIST', payload: payload };
+  return { type: "SET_CONSIGNEE_LIST", payload: payload };
 };
 
 export const getConsigneeList = () => async (dispatch) => {
@@ -25,8 +25,8 @@ export const deleteConsignee = (id) => async (dispatch) => {
   return pass;
 };
 
-export const updateConsignee = (id) => (dispatch) => {
-  const pass = api.member.updateDefaultConsignee(id);
+export const updateConsignee = (id) => async (dispatch) => {
+  const pass = await api.member.updateDefaultConsignee(id);
   if (pass) {
     dispatch(getConsigneeList());
   }
