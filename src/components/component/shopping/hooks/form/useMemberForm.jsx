@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
-import address from '../../mockData/addressMap';
-import { produce } from 'immer';
+import React, { useEffect, useState } from "react";
+import address from "../../mockData/addressMap";
+import { produce } from "immer";
 
 function useMemberForm() {
-
-  const [memberForm , setMemeberForm] = useState({
+  const [memberForm, setMemeberForm] = useState({
     gender: 1,
     name: "",
-    nameAlert: '',
-    phone: '',
-    phoneAlert: '',
+    nameAlert: "",
+    phone: "",
+    phoneAlert: "",
     //email
-    email: '',
-    emailAlert: '',
+    email: "",
+    emailAlert: "",
     //地址
     city: 1,
     region: 1,
-    road: '',
-    addressAlert: '',
+    road: "",
+    addressAlert: "",
     cityArr: [], // 縣市陣
     regionArr: [], // 區域陣列
     sendEdm: false, // 是否同意EDM
@@ -26,22 +25,20 @@ function useMemberForm() {
     memberId: null,
   });
 
-  console.log(memberForm , setMemeberForm);
-
-  function init(){
-    setMemeberForm(produce(memberForm, draft=>{
-      const cityArr =  getCity();
-      console.log(cityArr)
-      draft.cityArr = cityArr
-      draft.city = cityArr[0].id;
-      draft.regionArr  = getCounty(draft.city);
-      draft.region = draft.regionArr[0].id; 
-      console.log(draft)  
-    }))
+  function init() {
+    setMemeberForm(
+      produce(memberForm, (draft) => {
+        const cityArr = getCity();
+        draft.cityArr = cityArr;
+        draft.city = cityArr[0].id;
+        draft.regionArr = getRegion(draft.city);
+        draft.region = draft.regionArr[0].id;
+      })
+    );
   }
 
   // 縣 資料
-  function getCity(){
+  function getCity() {
     return (
       address.addressData.map((v) => {
         const { id, name } = v;
@@ -51,9 +48,44 @@ function useMemberForm() {
   }
 
   // 區 資料
-  function getCounty(id) {
+  function getRegion(id) {
     const obj = address.addressData.find((v) => v.id === id);
     return obj ? obj.counties || [] : [];
+  }
+
+  //設定會員名稱
+  function setMemberName(val) {
+    setMemeberForm(
+      produce(memberForm, (draft) => {
+        draft.name = val;
+      })
+    );
+  }
+  //設定會員電話
+  function setMemberPhone(val) {
+    setMemeberForm(
+      produce(memberForm, (draft) => {
+        draft.phone = val;
+      })
+    );
+  }
+  //設定會員縣市(選擇縣市後預設區域為該縣市第一筆區域資料)
+  function setMemberCity(val){
+    setMemeberForm(
+      produce(memberForm, (draft) => {
+        draft.city = val;
+        draft.regionArr = getRegion(val);
+        draft.region = draft.regionArr[0]?.id ;
+      })
+    );
+  }
+  //設定會員區域
+  function setMemeberRegion(val){
+    setMemeberForm(
+      produce(memberForm, (draft) => {
+        draft.region = val;
+      })
+    );
   }
 
   //防呆檢查
@@ -62,7 +94,12 @@ function useMemberForm() {
     const alertMap = {
       name: () => (memberForm.nameAlert = checkName(memberForm.name)),
       phone: () => (memberForm.phoneAlert = checkMoblie(memberForm.phone)),
-      address: () => (memberForm.addressAlert = checkAddress(memberForm.city, memberForm.region, memberForm.road)),
+      address: () =>
+        (memberForm.addressAlert = checkAddress(
+          memberForm.city,
+          memberForm.region,
+          memberForm.road
+        )),
       email: () => (memberForm.emailAlert = checkEmail(memberForm.email)),
     };
     const isPass = fields.reduce((pass, field) => {
@@ -73,11 +110,8 @@ function useMemberForm() {
 
     return isPass;
   }
-  
 
-  return (
-    [memberForm, setMemeberForm, init, formCheck]
-  )
+  return [memberForm, init, setMemberName, setMemberPhone, setMemberCity, setMemeberRegion, formCheck];
 }
 
-export default useMemberForm
+export default useMemberForm;

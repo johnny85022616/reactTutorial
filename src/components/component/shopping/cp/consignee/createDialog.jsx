@@ -1,17 +1,30 @@
 import React, { useEffect } from "react";
 import FullscreenDialog from "../common/fullscreenDialog";
 import "../../style/shopping/consigneeManagement/createDialog.scss";
-import useMemberForm from '../../hooks/form/useMemberForm'
+import useMemberForm from "../../hooks/form/useMemberForm";
 
 function CreateDialog({ closeCreateDialog }) {
+  const [memberFormData, init, setMemberName, setMemberPhone, setMemberCity, setMemeberRegion] = useMemberForm();
 
-  const [memberFormData, setMemberFormData, init] = useMemberForm();
-
-  useEffect(()=>{
-    init()
-  }, [])
-
-
+  useEffect(() => {
+    init();
+  }, []);
+  // 設定會員名稱
+  function handleNameInput(e) {
+    if (e) setMemberName(e.target.value);
+  }
+  // 設定會員電話
+  function handlePhoneInput(e) {
+    if (e) setMemberPhone(e.target.value);
+  }
+  // 設定會員縣市
+  function handleCityChange(e) {
+    if (e) setMemberCity(parseInt(e.target.value));
+  }
+  // 設定會員區域
+  function handleRegionChange(e) {
+    if (e) setMemeberRegion(parseInt(e.target.value));
+  }
 
   return (
     <div className="createDialog">
@@ -27,6 +40,10 @@ function CreateDialog({ closeCreateDialog }) {
               name="name"
               className="formInput"
               placeholder="請輸入姓名"
+              onInput={(e) => {
+                handleNameInput(e);
+              }}
+              value={memberFormData.name}
             />
             <span className="alertMsg"></span>
           </div>
@@ -37,6 +54,11 @@ function CreateDialog({ closeCreateDialog }) {
               name="name"
               className="formInput"
               placeholder="請輸入手機號碼"
+              maxLength={10}
+              onInput={(e) => {
+                handlePhoneInput(e);
+              }}
+              value={memberFormData.phone}
             />
             <span className="alertMsg"></span>
           </div>
@@ -46,14 +68,22 @@ function CreateDialog({ closeCreateDialog }) {
               <select
                 className="formSelect group-[.error]:border-c_red mr-5"
                 name="city"
+                onChange={(e) => {handleCityChange(e)}}
+                value={memberFormData.city}
               >
-                <option value="1">台北市</option>
+                {memberFormData?.cityArr.map((v,idx) => (
+                  <option value={v.id} key={idx}>{v.name}</option>
+                ))}
               </select>
               <select
                 className="formSelect group-[.error]:border-c_red mr-5"
                 name="region"
+                onChange={(e) => {handleRegionChange(e)}}
+                value={memberFormData.region}
               >
-                <option value="1">淡水區</option>
+                {memberFormData?.regionArr?.map((v,idx) => (
+                  <option value={v.id} key={idx}>{v.name}</option>
+                ))}
               </select>
             </div>
             <input type="text" className="formInput" placeholder="請輸入地址" />
