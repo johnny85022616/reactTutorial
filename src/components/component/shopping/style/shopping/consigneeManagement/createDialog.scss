@@ -1,20 +1,15 @@
-@use "../../color.scss" as *;
+@use '../../color.scss' as *;
 
 .consigneeForm {
   color: $heavy-metal;
   margin: 10px 15px 80px 15px;
   .group {
     margin-bottom: 20px;
-    .label {
-    }
     .formInput {
       margin-top: 0.25rem;
       width: 100%;
       border-radius: 0.5rem;
-      border-width: 1px;
-      border-style: solid;
-      --tw-border-opacity: 1;
-      border-color: rgb(248 249 249 / var(--tw-border-opacity));
+      // border: 1px solid $white;
       --tw-bg-opacity: 1;
       background-color: rgb(248 249 249 / var(--tw-bg-opacity));
       padding-top: 0.5rem;
@@ -31,7 +26,6 @@
         font-size: 16px;
         padding: 10px 15px;
         margin-top: 5px;
-        border: 1px solid #f8f9f9;
         border-radius: 10px;
         box-sizing: border-box;
         background-color: #f8f9f9;
@@ -39,6 +33,44 @@
           margin-right: 20px;
         }
       }
+    }
+    .alertMsg {
+      display: none;
+      color: $red;
+    }
+  }
+}
+
+.submitBtn {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 60px;
+  width: 100%;
+  border-top: 1px solid $alto;
+  text-align: center;
+  line-height: 60px;
+  span {
+    display: inline-block;
+    height: 40px;
+    width: 92%;
+    border-radius: 10px;
+    background-color: $red;
+    text-align: center;
+    line-height: 40px;
+    color: $white;
+  }
+}
+
+.group {
+  &.error {
+    input,
+    select {
+      border: 1px solid $red ;
+    }
+    .alertMsg {
+      display: block;
     }
   }
 }

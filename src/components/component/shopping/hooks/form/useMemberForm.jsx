@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import address from "../../mockData/addressMap";
 import { produce } from "immer";
+import tools from '../../utils/tools';
 
 function useMemberForm() {
   const [memberForm, setMemeberForm] = useState({
@@ -87,31 +88,47 @@ function useMemberForm() {
       })
     );
   }
+  //設定街道
+  function setMemberRoad(val){
+    setMemeberForm(produce(memberForm, (draft)=>{
+      draft.road = val
+    }))
+  }
 
   //防呆檢查
   function formCheck(fields) {
     const { checkName, checkMoblie, checkAddress, checkEmail } = tools;
     const alertMap = {
-      name: () => (memberForm.nameAlert = checkName(memberForm.name)),
-      phone: () => (memberForm.phoneAlert = checkMoblie(memberForm.phone)),
-      address: () =>
-        (memberForm.addressAlert = checkAddress(
+      name: () => {
+        const nameAlert = checkName(memberForm.name)
+        setMemeberForm((prev)=>({...prev, nameAlert}))
+        return nameAlert
+      } ,
+      phone: () => {
+        const phoneAlert = checkMoblie(memberForm.phone)
+        setMemeberForm((prev)=>({...prev, phoneAlert}))
+        return phoneAlert
+      } ,
+      address: () =>{
+        const addressAlert = checkAddress(
           memberForm.city,
           memberForm.region,
           memberForm.road
-        )),
-      email: () => (memberForm.emailAlert = checkEmail(memberForm.email)),
+        )
+        setMemeberForm((prev)=>({...prev, addressAlert: addressAlert}))
+        return addressAlert
+      },
+      email: () => setMemeberForm((prev)=> ({...prev, emailAlert: checkEmail(memberForm.email) })) 
     };
     const isPass = fields.reduce((pass, field) => {
       const fieldPass = alertMap[field]() ? false : true;
       pass = pass && fieldPass;
       return pass;
     }, true);
-
     return isPass;
   }
 
-  return [memberForm, init, setMemberName, setMemberPhone, setMemberCity, setMemeberRegion, formCheck];
+  return [memberForm, init, setMemberName, setMemberPhone, setMemberCity, setMemeberRegion, setMemberRoad, formCheck];
 }
 
 export default useMemberForm;
