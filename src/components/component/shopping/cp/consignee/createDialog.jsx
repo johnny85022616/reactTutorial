@@ -51,7 +51,7 @@ function CreateDialog({ closeCreateDialog }) {
         addr: road.replace(/\s*/g, ''),
         city,
         county: region,
-        isDefault: true,
+        isDefault: "Y",
         mobile: phone,
         name: name 
       }
