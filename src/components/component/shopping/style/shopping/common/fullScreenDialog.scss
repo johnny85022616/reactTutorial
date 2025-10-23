@@ -3,11 +3,16 @@
 .fullScreenDialog {
   position: fixed;
   z-index: 20;
-  top: 0px;
+  top: 0;
   right: 0px;
   left: 0px;
-  bottom: 0px;
+  bottom: -100%;
   background-color: $white;
+  transition: bottom 1s linear;
+  &.active{
+    animation: slideUpDialog .2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
   .box {
     width: 100%;
     height: 100%;
@@ -31,5 +36,17 @@
       overflow: auto;
       position: relative;
     }
+  }
+}
+
+
+@keyframes slideUpDialog {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
   }
 }

@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import '../../style/shopping/common/fullscreenDialog.scss';
 
-function fullscreenDialog({ head, children, closeFullScreenDialog }) {
-  
+function FullscreenDialog({ head, children, closeFullScreenDialog }) {
+
+  const [open, setOpen] = useState(false)
+
+  useLayoutEffect(()=>{
+    setOpen(true)
+  },[])
+
   return (
-    <div className='fullScreenDialog'>
+    <div className={`fullScreenDialog ${open? 'active': ''}`}>
       <div className='box'>
         <div className='head'>
           <p>{head}</p>
@@ -18,4 +24,4 @@ function fullscreenDialog({ head, children, closeFullScreenDialog }) {
   );
 }
 
-export default fullscreenDialog;
+export default FullscreenDialog;
