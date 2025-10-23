@@ -57,6 +57,7 @@ function CreateDialog({ closeCreateDialog }) {
       }
     }
     const isSubmitOk = await dispatch(createConsignee(payload))
+    if(isSubmitOk) closeCreateDialog()
     
     console.log("isSubmitOk",isSubmitOk);
   }
