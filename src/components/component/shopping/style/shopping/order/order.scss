@@ -1,0 +1,18 @@
+@use '../../color' as *;
+.order{
+  font-size: 15px;
+  margin-bottom: 60px;
+  .notice{
+    padding: 5px 10px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      color: $red;
+      font-size: 1.2rem;
+    }
+  }
+  .list{
+    
+  }
+}
